@@ -1,15 +1,21 @@
 import { useState, useEffect } from 'react';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import './index.css';
 
-function Watch() {
-    const [hour, setHour] = useState(0);
-    const [minute, setMinute] = useState(0);
-    const [second, setSecond] = useState(0);
+function Watch({ timeZone, watchName }) {
+    const [time, setTime] = useState({
+        hour: 0,
+        minute: 0,
+        second: 0,
+    });
 
     const clock = () => {
         const date = new Date();
+        const hoursOffset = timeZone + date.getTimezoneOffset() / 60;
 
-        const hours = ((date.getHours() + 11) % 12) + 1;
+        const hours = ((date.getHours() + hoursOffset + 11) % 12) + 1;
         const minutes = date.getMinutes();
         const seconds = date.getSeconds();
 
@@ -17,9 +23,11 @@ function Watch() {
         const minute = minutes * 6;
         const second = seconds * 6;
 
-        setHour(hour);
-        setMinute(minute);
-        setSecond(second);
+        setTime({
+            hour,
+            minute,
+            second,
+        });
     };
 
     useEffect(() => {
@@ -31,23 +39,41 @@ function Watch() {
     }, []);
 
     return (
-        <div className="clock">
-            <div className="wrap">
-                <span
-                    className="hour"
-                    style={{ transform: `rotate(${hour}deg)` }}
-                ></span>
-                <span
-                    className="minute"
-                    style={{ transform: `rotate(${minute}deg)` }}
-                ></span>
-                <span
-                    className="second"
-                    style={{ transform: `rotate(${second}deg)` }}
-                ></span>
-                <span className="dot"></span>
-            </div>
-        </div>
+        <Container>
+            <Row>
+                <Col md={12} className="d-flex justify-content-center mb-3">
+                    <h2>{watchName}</h2>
+                </Col>
+            </Row>
+            <Row>
+                <Col md={12} className="d-flex justify-content-center mb-3">
+                    <div className="clock simple show">
+                        <div className="hours-container">
+                            <div
+                                className="hours"
+                                style={{ transform: `rotate(${time.hour}deg)` }}
+                            ></div>
+                        </div>
+                        <div className="minutes-container">
+                            <div
+                                className="minutes"
+                                style={{
+                                    transform: `rotate(${time.minute}deg)`,
+                                }}
+                            ></div>
+                        </div>
+                        <div className="seconds-container">
+                            <div
+                                className="seconds"
+                                style={{
+                                    transform: `rotate(${time.second}deg)`,
+                                }}
+                            ></div>
+                        </div>
+                    </div>
+                </Col>
+            </Row>
+        </Container>
     );
 }
 
