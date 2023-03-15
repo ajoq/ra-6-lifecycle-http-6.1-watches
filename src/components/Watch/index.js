@@ -2,9 +2,10 @@ import { useState, useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import CloseButton from 'react-bootstrap/CloseButton';
 import './index.css';
 
-function Watch({ timeZone, watchName }) {
+function Watch({ id, timeZone, watchName, onRemove }) {
     const [time, setTime] = useState({
         hour: 0,
         minute: 0,
@@ -31,11 +32,14 @@ function Watch({ timeZone, watchName }) {
     };
 
     useEffect(() => {
+        clock();
+
         const intervalId = setInterval(clock, 1000);
 
         return () => {
             clearInterval(intervalId);
         };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
@@ -71,6 +75,7 @@ function Watch({ timeZone, watchName }) {
                             ></div>
                         </div>
                     </div>
+                    <CloseButton onClick={() => onRemove(id)} />
                 </Col>
             </Row>
         </Container>
