@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/ra-6-lifecycle-http-6.1-watches/static/css/main.a0806185.css",
+    "main.js": "/ra-6-lifecycle-http-6.1-watches/static/js/main.3e8c6be7.js",
+    "static/media/ios_clock.svg": "/ra-6-lifecycle-http-6.1-watches/static/media/ios_clock.b71b09ba4c8834f4e71e.svg",
+    "index.html": "/ra-6-lifecycle-http-6.1-watches/index.html",
+    "main.a0806185.css.map": "/ra-6-lifecycle-http-6.1-watches/static/css/main.a0806185.css.map",
+    "main.3e8c6be7.js.map": "/ra-6-lifecycle-http-6.1-watches/static/js/main.3e8c6be7.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a0806185.css",
+    "static/js/main.3e8c6be7.js"
+  ]
+}
